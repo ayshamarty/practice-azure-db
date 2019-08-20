@@ -6,46 +6,53 @@
 
 package com.microsoft.azure.samples.spring;
 
-import org.springframework.data.annotation.Id;
+import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import lombok.Data;
+
+@Data
+@Entity
 public class Pet {
-    @Id
-    private Integer id;
 
-    private String name;
+	@Id
+	private Long citizenId;
 
-    private String species;
+	private String forenames;
 
-    public Integer getId() {
-        return id;
-    }
+	private String surname;
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	private String homeAddress;
 
-    public String getName() {
-        return name;
-    }
+	@Temporal(TemporalType.DATE)
+	private Date dateOfBirth;
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	private String placeOfBirth;
 
-    public String getSpecies() {
-        return species;
-    }
+	private String sex;
 
-    public void setSpecies(String species) {
-        this.species = species;
-    }
+	public Pet() {
 
-    @Override
-    public String toString() {
-        return "Pet{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", species='" + species + '\'' +
-                '}';
-    }
+	}
+
+	public Pet(Long citizenId, String forenames, String surname, String homeAddress, Date dateOfBirth,
+			String placeOfBirth, String sex) {
+		this.citizenId = citizenId;
+		this.forenames = forenames;
+		this.surname = surname;
+		this.homeAddress = homeAddress;
+		this.dateOfBirth = dateOfBirth;
+		this.placeOfBirth = placeOfBirth;
+		this.sex = sex;
+	}
+
+	@Override
+	public String toString() {
+		return "Citizen{" + "id=" + citizenId + ", name='" + forenames + surname + '\'' + ", home address='"
+				+ homeAddress + '\'' + ", date of birth='" + dateOfBirth + '\'' + '}';
+	}
 }
